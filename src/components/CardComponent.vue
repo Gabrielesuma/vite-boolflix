@@ -1,20 +1,26 @@
 <template>
-    <div>
-        <span>{{ title }}</span>
-        <br>
-        <span>{{ original_title }}</span>
-        <br>
-        <span>{{ original_language }}</span>
-        <br>
-        <span>{{ vote_average }}</span>
-        <br>
+    <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title || item.name }}</h5>
+            <p class="card-text">
+                {{ item.original_title || item.original_name }}
+                <br>
+                {{ item.original_language }}
+                <br>
+                {{ item.vote_average }}
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         name: 'CardComponent',
-        props: ['title', 'original_title', 'original_language', 'vote_average']
+        props:{
+            item: Object
+        }
     }
 </script>
 

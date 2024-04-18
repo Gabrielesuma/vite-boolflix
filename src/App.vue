@@ -1,5 +1,5 @@
 <template>
-  <HeaderComponent @movieSearch="getMovie()"/>
+  <HeaderComponent @searchApi="getMedia"/>
   <MainComponent/>
 </template>
 
@@ -20,26 +20,35 @@
       }
     },
     methods:{
+      getMedia(){
+        if(this.store.options.params.query){
+          this.getMovies();
+          this.getTvSeries();
+        }
+      },
       getMovies(){
         axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options).then((res) => {
           console.log(res.data.results);
+          this.store.movies = res.data.results;
+        }).catch((error)=>{
+          console.log(error);
+        }).finally(()=>{
+          console.log('finally');
         })
       },
       getTvSeries(){
         axios.get(this.store.apiUrl + this.store.endPoint.tv, this.store.options).then((res) => {
           console.log(res.data.results);
-        })
-      },
-      getMovie(){
-        axios.get(this.store.apiUrl + this.store.endPoint.movie, this.store.options).then((res) => {
-          this.store.movies = res.data.results;
+          this.store.series = res.data.results;
+        }).catch((error)=>{
+          console.log(error);
+        }).finally(()=>{
+          console.log('finally');
         })
       }
     },
     created(){
-      this.getMovie();
-      this.getMovies();
-      this.getTvSeries();
+      
     }
   }
 </script>

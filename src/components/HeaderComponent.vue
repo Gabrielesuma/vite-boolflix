@@ -2,8 +2,8 @@
     <header>
         <h1>BOOLFLIX</h1>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Cerca..." v-model="store.options.params.query">
-            <button class="btn btn-danger" type="button" @click="$emit('movieSearch')">Cerca</button>
+            <input type="text" class="form-control" placeholder="Cerca..." v-model.trim="store.options.params.query" @keyup.enter="searchMedia">
+            <button class="btn btn-danger" type="button" @click="searchMedia">Cerca</button>
         </div>
     </header>
 </template>
@@ -15,6 +15,11 @@
         data(){
             return{
                 store
+            }
+        },
+        methods: {
+            searchMedia(){
+                this.$emit('searchApi');
             }
         }
     }
