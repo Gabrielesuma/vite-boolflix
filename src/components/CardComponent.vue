@@ -60,6 +60,7 @@ import {store} from '../store.js';
     .stars{
         color: gold;
     }
+
     .flip-card{
         aspect-ratio: 1/1.5;
         background-color: transparent;
@@ -73,13 +74,11 @@ import {store} from '../store.js';
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }
-
         &:hover .flip-card-inner{
             transform: rotateY(180deg);
         }
-
         .flip-card-front,
-        .flip-card-back {
+        .flip-card-back{
             position: absolute;
             width: 100%;
             height: 100%;
@@ -87,12 +86,11 @@ import {store} from '../store.js';
             /* Safari */
             backface-visibility: hidden;
         }
-
         .flip-card-back{
             padding: 20px;
             background-color: black;
             color: white;
-            transform: rotateY('deg180');
+            transform: rotateY(180deg);
             overflow-x: hidden;
             overflow-y: auto;
         }
