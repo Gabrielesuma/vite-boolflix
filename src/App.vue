@@ -1,6 +1,10 @@
 <template>
-  <HeaderComponent @searchApi="getMedia"/>
-  <MainComponent/>
+  <video v-if="intro" src="/images/netflixIntro.mp4" autoplay muted></video>
+  <div v-else>
+    <HeaderComponent @searchApi="getMedia"/>
+    <MainComponent/>
+  </div>
+  
 </template>
 
 <script>
@@ -16,7 +20,8 @@
     },
     data(){
       return{
-        store
+        store,
+        intro: true
       }
     },
     methods:{
@@ -48,11 +53,15 @@
       }
     },
     created(){
-      
+      setTimeout(() => {
+        this.intro = false
+      },6000)
     }
   }
 </script>
 
 <style lang="scss" scoped>
-
+  video{
+    width: 100%;
+  }
 </style>
